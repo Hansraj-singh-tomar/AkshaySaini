@@ -1,3 +1,81 @@
-#heading{
-    color: red;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+.app{
+    width:95%;
+    margin: 12px auto;
+}
+
+.logo{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.nav-items ul{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-items ul li{
+    margin: 0 15px; 
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.nav-items ul li:hover{
+    text-decoration: underline;
+}
+
+.search{
+    margin: 20px 0;
+}
+
+.res-container{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.res-card{
+    width: 230px;
+    padding: 5px;
+}
+
+.res-card:hover{
+    border: 1px solid black;
+    cursor: pointer;
+    background-color:cornsilk;
+}
+
+.card-img{
+    width: 100%;
+    height: 140px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.filter-btn{
+    margin-left: 10px;
+}
+
+
+
+
+
+
+
+

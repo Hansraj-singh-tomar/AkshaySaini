@@ -7,21 +7,9 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <!-- this h1 tag is not replaced by render method -->
-    <h1>hello top</h1>
     <div id="root">
-        <!-- this h1 tag replace by render() method -->
-        <h1>hello</h1> 
     </div>
-    <!-- This is the core react file -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <!-- This is the React library which is useful for dom operations -->
-    <!-- this file is like bridge which connect to browser to dom -->
-    <!-- Here crossorigin attribute is related to resolve CORS error bydefault it's value is crossorigin="anonymous", "use-credentials" -->
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-
-    <script src="./App.js"></script>
+    <script type="module" src="./src/App.js"></script> 
 </body>
 </html>
 
-// all code has removed

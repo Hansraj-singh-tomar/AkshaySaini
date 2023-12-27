@@ -1,0 +1,19 @@
+1. Single responsibility Principle - for everything create a different component
+    -> Code becomes Reusable, Maintainable, Testable
+
+
+2. Breakdown Large JS file into chunks
+    -> If we are developing large scale application we must breakdown our application into smaller pieces  
+        This process is known as chinking, code spliting, Dynamic bundling, lazy loading, ondemand loading, Dynamic import so many name for it.
+    -> In that when we go to our grocery page then only grocery code will their in our app/application
+    -> This lazy function create a different js file for us but it render 
+        it with our main js file to resolve it we will use suspense with lazy
+        suspense will render it when we go to grocery component
+Example - import {lazy, Suspense} from "react";
+            const Grocery = lazy(() => import("./components/Grocery.js"));
+            <Suspense fallback={<h1>Loading....</h1>}><Grocery/></Suspense>
+3. A Hook is just a utility normal javascript function
+
+4. To check online status we have window event listener for that with that we can add this functionality
+
+5. network tab me js ko select karne par hame js file milegi usme hame kisi component ko fild karne ke liye ctrl+f likhne par niche option mikega search bar ka with that we can find the component

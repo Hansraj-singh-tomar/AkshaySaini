@@ -1,0 +1,137 @@
+// ----------------------- index.html -------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namaste React</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- this h1 tag is not replaced by render method -->
+    <h1>hello top</h1>
+    <div id="root">
+        <!-- this h1 tag replace by render() method -->
+        <h1>hello</h1> 
+    </div>
+    <!-- This is the core react file -->
+    
+    <!-- CDN link of React -->
+    <!-- <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script> -->
+    
+    <!-- This is the React library which is useful for dom operations -->
+    <!-- this file is like bridge which connect to browser to dom -->
+    <!-- Here crossorigin attribute is related to resolve CORS error bydefault it's value is crossorigin="anonymous", "use-credentials" -->
+    
+    <!-- CDN link of react-dom -->
+    <!-- <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script> -->
+
+    <script type="module" src="./App.js"></script> 
+    <!-- type="module", now it's not a normal browser script -->
+</body>
+</html>
+
+
+
+
+// ------------------------------------ app.js ------------------------------------
+
+// First Part
+// this empty object is place where we will give attributes to our tags
+// const heading = React.createElement("h1", {id: "heading", xyz: "22"}, "hello world from React");
+// console.log(heading); // it will give us object // {$$typeof: Symbol(react.element), type: 'h1', key: null, ref: null, props: {…}, …}
+// // props: {id: 'heading', xyz: '22', children: 'hello world from React'}
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(heading);
+
+
+// Second Part
+// for nested structure 
+{/* <div id="parent">
+    <div id="child">
+        <h1>I am h1 tag</h1>
+        <h2>I am h2 tag</h2>
+    </div>
+    <div id="child2">
+        <h1>I am h1 tag</h1>
+        <h2>I am h2 tag</h2>
+    </div>
+</div> */}
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const parent = React.createElement("div",{ id: "parent" },[
+    React.createElement("div", { id: "child" },[
+            React.createElement("h1", {}, "I am h1 Tag"),
+            React.createElement("h2", {}, "I am h2 Tag")
+    ]),
+    React.createElement("div", { id: "child2" },[
+            React.createElement("h1", {}, "I am h1 Tag"),
+            React.createElement("h2", {}, "I am h2 Tag")
+    ]),
+]);
+
+// To resolve this complexity their is known as JSX
+
+const root = ReactDOM.createRoot(document.getElementById("root")); // i did mistake in this line, i was writing ReactDOM.createElement()
+
+root.render(parent); // if anything already available inside the root div then this render method replace it
+
+
+// Episode - Ignite our app
+// we are using here parcel
+// npm i -D parcel
+
+// inside package-lock.json -
+// "parcel": {
+// "version": "2.4.8", // it don't use tilde and carrent before version // it keeps exact version
+// "integrity": "dsjfroing04093i*#&#kbKEJF", // it verify on production, which version is in my local machine and is the same version which is deployed on production
+// }
+
+// package.json is configration for our npm and node_module is kind a database it containes the actual data of that dependencies
+// transitive dependencies = parcel as a project has it own dependencies and those dependencies can have its own dependencies, => This is know as the transitive dependencies
+// parcel can not do all this things own its own, parcel need help of all other packages
+
+// using npm install i can recreate node_modules inside my project
+// whatever you regenerate don't put on git, git should have essensial things
+
+// npx parcel index.html - npx means we are executing owr package
+// I was getting an error while using this command - I installed Microsoft visual studio 2015 C++ software in my system
+
+// To use CDN link of React library it is a costly operation. This is not a good way to do it. if new version comes of react than we will have to change the URL in over system.
+// we will install react and react-dom in our project.
+
+// parcel -
+// it's creating a dev build for you,
+// it's creating a local server for you,
+// it's refreshing your page also,(It is doing something known as HMR - Hot module replacement- while saving file we see the changes in our browser)
+// it uses the file watching algorithm - which is written in C++.
+// parcel also caching things for you (Caching - faster builds)
+// parcel do a image optimization for us.
+// Minification of file also (for production)
+// it will do bundling also
+// it will compress file also
+// consistant hashing
+// code spliting
+// Differential Bundling - (it gives support of older browser also)
+// for beautifull error display view it uses - Diagnostic and error handing
+// https - i want to test which works or not in SSL it will give us that support/feature us well.
+// it uses the tree saking algorithm - remove unused files for you
+// different dev and prod bundles
+
+// To read more - parcel.org
+
+// npx parcel build index.html, this command will give us error, in package.json "main": "app.js" we have to remove this line than we can create a build of our project.
+
+// package.json - means that it will 100% time on this version it might not be work on other verions but it will definatally work on that vresion
+// parcel take care of it along with browserlist
+// "browsersList": {
+    // "last 2 Chrome version",
+    // "last 3 Firefox version",
+    // "last 2 versions" // last 2 versions of all browsers // gov. website should work on oldest version of browser as well
+// }
+// you can use browserlist.dev website
+
+// Note - React is not only who is responsible for faster our app ( prcel, babel, vite is also responsible for that)
+// This is how we have created our own Create-React-App

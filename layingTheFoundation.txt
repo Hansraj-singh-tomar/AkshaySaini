@@ -1,0 +1,876 @@
+
+// ----------------------- App.js ---------------------------------------
+
+// part - 1 (JSX, Babel)
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// React.createElement => ReactElement => It's an a js object => HTMLElement(when we render it on dom than it becomes HTMLElement)
+ 
+// const heading = React.createElement("h1", { id: "heading" }, "Namaste React");
+// console.log(heading);
+
+// to handle this complexity we will use JSX(javascript Xml syntax) - which is easiar to create html element
+// JSX
+// this jsx code transpilled(converted) to React.createElement behind the scene => than ReactElement converts to js object => than HTMLElement(while render)
+// that is this is the same thing 
+const jsxHeading = <h1 id="heading">Namaste React using JSX</h1>;
+// console.log(jsxHeading); // both console has a same output 
+
+const root = ReactDOM.createRoot(document.getElementById("root")); 
+
+// root.render(heading);
+root.render(jsxHeading);
+
+// JSX
+// JSX is not a part of react, React and JSX are different,
+// JSX and HTML both are difference
+// JSX is not html inside js, JSX is a html like syntax
+// React element is an Object and JSX is just syntax
+// js does not comes with jsx build inside it. our js engine does not understant what is jsx, parcel is doing the job behind the scene
+// this code transpiled(convert) before it goes to js engine, and then js engine receive the code which browser can understand
+
+// Babel - It comes with Parcel
+// parcel is traspilling the code using Babel package parcel install this package
+// babel is a js compiler(transpiller)
+// js engine understand ECMA script - this is what pure js
+// babel transpile the ES6 code that older browser can unserstand
+// const heading = <h1>heading - 1</h1>, if you are writing it in multiple line than we must use brackets()
+// const heading = (
+//     <h1>
+//         heading - 1
+//     </h1>
+// )
+
+
+// ------------------------- React Component -----------------------------
+
+// Part - 2 (React Components)
+// 1. Class base component
+// 2. Functional components - If a function is returning a react element it becomes a functional component. 
+ 
+
+// React Element - To change it into an functional component we have to use arrow function and use capital letter of function 
+const reactElementHeading = (
+    <h1 className='head' tabIndex="5">This is React Element</h1>
+);
+
+// Functional component 
+const HeadingCmp = () => {
+    return (
+        <div className='container'>
+            <h1 className='heading'>This is functional component</h1>
+        </div>
+    )
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// we can't render functional component like this 
+// root.render(HeadingCmp); // wrong way
+root.render(<HeadingCmp/>) // right way // this is how we have to render functional component
+
+// Generally we render react element like this 
+root.render(reactElementHeading); 
+
+
+
+
+// This is an Example of component composition
+// -------------------- functional component inside functional component ------------------------
+// Title functional component
+const Title = () => (
+    <h1 className='head' tabIndex={5}>
+        Title component
+    </h1>
+);
+
+// Functional component 
+const HeadingCmp = () => {
+    return (
+        <div className='container'>
+            // Component Composition - component inside another component
+            <Title />
+            {Title()} // This is also right way
+            <Title></Title> // This is also right way
+            <h1 className='heading'>This is functional component</h1>
+        </div>
+    )
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<HeadingCmp />)
+
+
+
+
+// --------------------- React element inside functional component ----------------
+// To use React Element inside Function component in that case we will have to use curly brackets
+
+const title = (
+    <h1 className='head' tabIndex={5}>React element</h1>
+)
+
+const HeadingCmp = () => {
+    return (
+        <div className='container'>
+            {title}
+            <h1>React Element inside Functional components</h1>
+        </div>
+    )
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<HeadingCmp />)
+
+
+
+// ------------ React Element inside React Element ----------------------
+
+const elem = <span>React Element</span>;
+
+const title = (
+    <div className='container'>
+        {elem}
+        <h1 className='head'>React Element inside React Element</h1>
+    </div>
+)
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(title)
+
+
+
+// ----------------- API data ----------------------
+{
+"info": {
+"id": "447833",
+"name": "Pizza Hut",
+"cloudinaryImageId": "2b4f62d606d1b2bfba9ba9e5386fabb7",
+"locality": "Treasure Island Mall",
+"areaName": "South Tukoganj",
+"costForTwo": "₹350 for two",
+"cuisines": [
+"Pizzas"
+],
+"avgRating": 4.1,
+"parentId": "721",
+"avgRatingString": "4.1",
+"totalRatingsString": "500+",
+"sla": {
+"deliveryTime": 26,
+"lastMileTravel": 2.3,
+"serviceability": "SERVICEABLE",
+"slaString": "26 mins",
+"lastMileTravelString": "2.3 km",
+"iconType": "ICON_TYPE_EMPTY"
+},
+"availability": {
+"nextCloseTime": "2023-12-22 00:00:00",
+"opened": true
+},
+"badges": {},
+"isOpen": true,
+"type": "F",
+"badgesV2": {
+"entityBadges": {
+"imageBased": {},
+"textBased": {},
+"textExtendedBadges": {}
+}
+},
+"aggregatedDiscountInfoV3": {
+"header": "ITEMS",
+"subHeader": "AT ₹179"
+},
+"orderabilityCommunication": {
+"title": {},
+"subTitle": {},
+"message": {},
+"customIcon": {}
+},
+"differentiatedUi": {
+"displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+"differentiatedUiMediaDetails": {
+"mediaType": "ADS_MEDIA_ENUM_IMAGE",
+"lottie": {},
+"video": {}
+}
+},
+"reviewsSummary": {},
+"displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+"restaurantOfferPresentationInfo": {}
+},
+"analytics": {
+"context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+},
+"cta": {
+"link": "https://www.swiggy.com/restaurants/pizza-hut-treasure-island-mall-south-tukoganj-indore-447833",
+"text": "RESTAURANT_MENU",
+"type": "WEBLINK"
+},
+"widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "728301",
+    "name": "Burger King",
+    "cloudinaryImageId": "aa77cb6fce4d94f3ad4b4e7fb42782db",
+    "locality": "New Palasia",
+    "areaName": "Indore",
+    "costForTwo": "₹350 for two",
+    "cuisines": [
+    "Burgers",
+    "American"
+    ],
+    "avgRating": 4.1,
+    "parentId": "166",
+    "avgRatingString": "4.1",
+    "totalRatingsString": "1K+",
+    "sla": {
+    "deliveryTime": 24,
+    "lastMileTravel": 3.5,
+    "serviceability": "SERVICEABLE",
+    "slaString": "24 mins",
+    "lastMileTravelString": "3.5 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-22 02:00:00",
+    "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {},
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "60% OFF",
+    "subHeader": "UPTO ₹120"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "isNewlyOnboarded": true,
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/burger-king-new-palasia-indore-indore-728301",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "403809",
+    "name": "Starbucks Coffee",
+    "cloudinaryImageId": "0c958153eeb436db6d515ca36e47e8a4",
+    "locality": "Race Course Road",
+    "areaName": "New Palasia",
+    "costForTwo": "₹400 for two",
+    "cuisines": [
+    "Beverages",
+    "Cafe",
+    "Snacks",
+    "Desserts",
+    "Bakery",
+    "Ice Cream"
+    ],
+    "avgRating": 4.3,
+    "parentId": "195515",
+    "avgRatingString": "4.3",
+    "totalRatingsString": "500+",
+    "sla": {
+    "deliveryTime": 20,
+    "lastMileTravel": 2.5,
+    "serviceability": "SERVICEABLE",
+    "slaString": "20 mins",
+    "lastMileTravelString": "2.5 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-21 23:59:00",
+    "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {},
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "30% OFF",
+    "subHeader": "UPTO ₹75"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/starbucks-coffee-race-course-road-new-palasia-indore-403809",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "84070",
+    "name": "Gurukripa Restaurant - Sarwate",
+    "cloudinaryImageId": "g5txnz35wlrgbskk3r8y",
+    "locality": "Sarwate",
+    "areaName": "South Tukoganj",
+    "costForTwo": "₹250 for two",
+    "cuisines": [
+    "North Indian",
+    "Thalis",
+    "Indian",
+    "Fast Food",
+    "Chinese",
+    "Beverages",
+    "Desserts",
+    "Jain",
+    "Punjabi"
+    ],
+    "avgRating": 4.3,
+    "veg": true,
+    "parentId": "92204",
+    "avgRatingString": "4.3",
+    "totalRatingsString": "10K+",
+    "sla": {
+    "deliveryTime": 22,
+    "lastMileTravel": 2.2,
+    "serviceability": "SERVICEABLE",
+    "slaString": "22 mins",
+    "lastMileTravelString": "2.2 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-21 23:59:00",
+    "opened": true
+    },
+    "badges": {
+    "imageBadges": [
+    {
+    "imageId": "v1695133679/badges/Pure_Veg111.png",
+    "description": "pureveg"
+    }
+    ]
+    },
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {
+    "badgeObject": [
+    {
+    "attributes": {
+    "description": "pureveg",
+    "imageId": "v1695133679/badges/Pure_Veg111.png"
+    }
+    }
+    ]
+    },
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "40% OFF",
+    "subHeader": "UPTO ₹80"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/gurukripa-restaurant-sarwate-sarwate-south-tukoganj-indore-84070",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "292119",
+    "name": "Nafees restaurant",
+    "cloudinaryImageId": "bmmsvclvyb6fuqb9hxyo",
+    "locality": "Professor Colony",
+    "areaName": "Bhawar Kuan",
+    "costForTwo": "₹400 for two",
+    "cuisines": [
+    "Mughlai",
+    "Biryani",
+    "North Indian",
+    "Chinese",
+    "Snacks",
+    "Desserts"
+    ],
+    "avgRating": 4.3,
+    "parentId": "10713",
+    "avgRatingString": "4.3",
+    "totalRatingsString": "10K+",
+    "sla": {
+    "deliveryTime": 27,
+    "lastMileTravel": 4.1,
+    "serviceability": "SERVICEABLE",
+    "slaString": "27 mins",
+    "lastMileTravelString": "4.1 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-21 23:58:00",
+    "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {},
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "₹125 OFF",
+    "subHeader": "ABOVE ₹249",
+    "discountTag": "FLAT DEAL"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/nafees-restaurant-professor-colony-bhawar-kuan-indore-292119",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "67501",
+    "name": "Shree leela Restaurant",
+    "cloudinaryImageId": "xw9mfmhpj6v7lgvoj6n9",
+    "locality": "Chhoti Gwaltoli",
+    "areaName": "Sarwate Bus Stand",
+    "costForTwo": "₹300 for two",
+    "cuisines": [
+    "North Indian",
+    "Thalis",
+    "Punjabi"
+    ],
+    "avgRating": 4.2,
+    "veg": true,
+    "parentId": "22061",
+    "avgRatingString": "4.2",
+    "totalRatingsString": "10K+",
+    "sla": {
+    "deliveryTime": 23,
+    "lastMileTravel": 2.2,
+    "serviceability": "SERVICEABLE",
+    "slaString": "23 mins",
+    "lastMileTravelString": "2.2 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-21 23:59:00",
+    "opened": true
+    },
+    "badges": {
+    "imageBadges": [
+    {
+    "imageId": "v1695133679/badges/Pure_Veg111.png",
+    "description": "pureveg"
+    }
+    ]
+    },
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {
+    "badgeObject": [
+    {
+    "attributes": {
+    "description": "pureveg",
+    "imageId": "v1695133679/badges/Pure_Veg111.png"
+    }
+    }
+    ]
+    },
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "₹125 OFF",
+    "subHeader": "ABOVE ₹249",
+    "discountTag": "FLAT DEAL"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/shree-leela-restaurant-chhoti-gwaltoli-sarwate-bus-stand-indore-67501",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "67500",
+    "name": "Pishori Restaurant",
+    "cloudinaryImageId": "ntfzr5mgmt9b9f545vtl",
+    "locality": "Khatiwala Tank",
+    "areaName": "Sapna Sangeeta",
+    "costForTwo": "₹450 for two",
+    "cuisines": [
+    "North Indian",
+    "Chinese",
+    "Mughlai",
+    "Punjabi",
+    "Indian"
+    ],
+    "avgRating": 4.2,
+    "parentId": "158125",
+    "avgRatingString": "4.2",
+    "totalRatingsString": "10K+",
+    "sla": {
+    "deliveryTime": 23,
+    "lastMileTravel": 3,
+    "serviceability": "SERVICEABLE",
+    "slaString": "23 mins",
+    "lastMileTravelString": "3.0 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-21 23:00:00",
+    "opened": true
+    },
+    "badges": {},
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {},
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "₹125 OFF",
+    "subHeader": "ABOVE ₹249",
+    "discountTag": "FLAT DEAL"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/pishori-restaurant-khatiwala-tank-sapna-sangeeta-indore-67500",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "99966",
+    "name": "Hotel Apna Avenue",
+    "cloudinaryImageId": "iqxxrnl22lasvumrgcjl",
+    "locality": "Manas Dawar",
+    "areaName": "New Palasia",
+    "costForTwo": "₹200 for two",
+    "cuisines": [
+    "North Indian",
+    "Chinese",
+    "Fast Food",
+    "Indian",
+    "South Indian",
+    "Beverages"
+    ],
+    "avgRating": 4.4,
+    "veg": true,
+    "parentId": "98060",
+    "avgRatingString": "4.4",
+    "totalRatingsString": "10K+",
+    "sla": {
+    "deliveryTime": 25,
+    "lastMileTravel": 3.5,
+    "serviceability": "SERVICEABLE",
+    "slaString": "25 mins",
+    "lastMileTravelString": "3.5 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-21 23:30:00",
+    "opened": true
+    },
+    "badges": {
+    "imageBadges": [
+    {
+    "imageId": "v1695133679/badges/Pure_Veg111.png",
+    "description": "pureveg"
+    }
+    ]
+    },
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {
+    "badgeObject": [
+    {
+    "attributes": {
+    "description": "pureveg",
+    "imageId": "v1695133679/badges/Pure_Veg111.png"
+    }
+    }
+    ]
+    },
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "₹125 OFF",
+    "subHeader": "ABOVE ₹249",
+    "discountTag": "FLAT DEAL"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/hotel-apna-avenue-manas-dawar-new-palasia-indore-99966",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    },
+    {
+    "info": {
+    "id": "103357",
+    "name": "Gurukripa Southtukoganj (Dutt)",
+    "cloudinaryImageId": "wbhvshhcwdzvrvuxfpsq",
+    "locality": "Shanti Mandapum",
+    "areaName": "South Tukoganj",
+    "costForTwo": "₹250 for two",
+    "cuisines": [
+    "North Indian",
+    "South Indian",
+    "Chinese",
+    "Snacks",
+    "Thalis",
+    "Desserts",
+    "Punjabi",
+    "Beverages",
+    "Indian",
+    "Jain"
+    ],
+    "avgRating": 4.4,
+    "veg": true,
+    "parentId": "92206",
+    "avgRatingString": "4.4",
+    "totalRatingsString": "10K+",
+    "sla": {
+    "deliveryTime": 22,
+    "lastMileTravel": 2.7,
+    "serviceability": "SERVICEABLE",
+    "slaString": "22 mins",
+    "lastMileTravelString": "2.7 km",
+    "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+    "nextCloseTime": "2023-12-21 23:59:00",
+    "opened": true
+    },
+    "badges": {
+    "imageBadges": [
+    {
+    "imageId": "v1695133679/badges/Pure_Veg111.png",
+    "description": "pureveg"
+    }
+    ]
+    },
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+    "entityBadges": {
+    "imageBased": {
+    "badgeObject": [
+    {
+    "attributes": {
+    "description": "pureveg",
+    "imageId": "v1695133679/badges/Pure_Veg111.png"
+    }
+    }
+    ]
+    },
+    "textBased": {},
+    "textExtendedBadges": {}
+    }
+    },
+    "aggregatedDiscountInfoV3": {
+    "header": "40% OFF",
+    "subHeader": "UPTO ₹80"
+    },
+    "orderabilityCommunication": {
+    "title": {},
+    "subTitle": {},
+    "message": {},
+    "customIcon": {}
+    },
+    "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+    "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+    "lottie": {},
+    "video": {}
+    }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {}
+    },
+    "analytics": {
+    "context": "seo-data-794df0c0-be23-469b-9a63-33cd7993cc4a"
+    },
+    "cta": {
+    "link": "https://www.swiggy.com/restaurants/gurukripa-southtukoganj-dutt-shanti-mandapum-south-tukoganj-indore-103357",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+    },
+    "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+    }
