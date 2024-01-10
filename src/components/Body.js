@@ -11,7 +11,7 @@ import UserContext from "../utils/UserContext";
 
 
 const Body = () => {
-    // we fetching data in different component
+    // we are fetching data in different component
     const { listOfRestaurant, filteredData, setFilteredData } = useRestaurantData();
     const [searchText, setSearchText] = useState("");
 
@@ -40,7 +40,7 @@ const Body = () => {
     return (
         <div className='body'>
             <div className="search">
-                <input value={searchText} onChange={(e) => setSearchText(e.target.value)} type="text" placeholder="Search item here..." className="border-black border-2 px-2" />
+                <input data-testid="searchInput" value={searchText} onChange={(e) => setSearchText(e.target.value)} type="text" placeholder="Search item here..." className="border-black border-2 px-2" />
                 <button onClick={handleSearch} className="border-2  border-black px-2 ml-2">Search</button>
                 <button className="border-2 border-black ml-2 px-2" onClick={handleFilterBtn}>Top Rated Restaurant</button>
                 <label htmlFor="input" className="m-2 font-semibold">Change Context Value:</label>

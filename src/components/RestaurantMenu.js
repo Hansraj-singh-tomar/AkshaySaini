@@ -10,7 +10,7 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
     const { resId } = useParams();
     const resInfo = useRestaurantMenu(resId);
-    const [showIndex, setShowIndex] = useState(0);
+    const [showIndex, setShowIndex] = useState();
 
     if (resInfo == null) {
         return <ShimmerSimpleGallery card imageHeight={200} imageWidth={300} col={4} row={2} caption />
